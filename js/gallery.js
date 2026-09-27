@@ -57,9 +57,18 @@ async function uploadFiles(files, statusEl) {
   loadGalleryPage(false);
 }
 
-document.getElementById("party-upload").addEventListener("change", (e) => {
-  uploadFiles(Array.from(e.target.files), document.getElementById("party-upload-status"));
-  e.target.value = "";
-});
+const uploadInput = document.getElementById("party-upload");
+const uploadStatus = document.getElementById("party-upload-status");
+const uploadsUnlocked = new Date() >= PARTY_DATE;
+
+if (uploadsUnlocked) {
+  uploadInput.addEventListener("change", (e) => {
+    uploadFiles(Array.from(e.target.files), uploadStatus);
+    e.target.value = "";
+  });
+} else {
+  uploadInput.disabled = true;
+  uploadStatus.textContent = "La subida de fotos se activa el día de la fiesta (10 de octubre).";
+}
 
 loadGalleryPage(false);
