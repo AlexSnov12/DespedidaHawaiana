@@ -316,6 +316,57 @@ h1, h2, h3, .hero-kicker {
   font-weight: 600;
 }
 
+.clabe-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  background: var(--color-bg-alt);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.clabe-label {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-basis: 100%;
+}
+
+.clabe-value {
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  word-break: break-all;
+  flex: 1;
+}
+
+.clabe-copy {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.clabe-copy:hover {
+  background: #e8543f;
+}
+
+.clabe-copy.copied {
+  background: var(--color-accent-2);
+}
+
 .rsvp-form {
   display: flex;
   flex-direction: column;
