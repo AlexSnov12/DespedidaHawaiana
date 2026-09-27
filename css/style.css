@@ -215,6 +215,11 @@ h1, h2, h3, .hero-kicker {
 .info-card--coral { border-top-color: var(--color-accent); }
 .info-card--teal { border-top-color: var(--color-accent-2); }
 
+.info-card a {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
 .rsvp-form {
   display: flex;
   flex-direction: column;
