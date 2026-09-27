@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Despedida de Soltero</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-content">
+      <p class="hero-kicker">Despedida de soltero(a)</p>
+      <h1 class="hero-names">Nombre &amp; Nombre</h1>
+      <p class="hero-date" id="party-date-text">DD de Mes de AAAA</p>
+
+      <div class="countdown" id="countdown">
+        <div class="countdown-item"><span id="cd-days">00</span><label>Días</label></div>
+        <div class="countdown-item"><span id="cd-hours">00</span><label>Horas</label></div>
+        <div class="countdown-item"><span id="cd-mins">00</span><label>Min</label></div>
+        <div class="countdown-item"><span id="cd-secs">00</span><label>Seg</label></div>
+      </div>
+
+      <nav class="hero-nav">
+        <a href="#info">Info</a>
+        <a href="#rsvp">Asistencia</a>
+        <a href="#galeria">Galería</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="info" class="section">
+    <h2>Información</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Lugar y hora</h3>
+        <p id="party-place">Lugar de la fiesta</p>
+        <p id="party-time">Hora</p>
+      </div>
+      <div class="info-card">
+        <h3>Código de vestimenta</h3>
+        <p>Temática hawaiana — trae tu camisa o vestido de flores</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="rsvp" class="section section-alt">
+    <h2>Confirma tu asistencia</h2>
+    <p class="section-subtitle">Por favor confírmanos antes del [fecha límite]</p>
+
+    <form id="rsvp-form" class="rsvp-form">
+      <label>
+        Nombre completo
+        <input type="text" name="nombre" required>
+      </label>
+
+      <label class="radio-group-label">¿Vendrás?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="asistencia" value="si" required> Sí, allí estaré</label>
+        <label><input type="radio" name="asistencia" value="no" required> No podré ir</label>
+      </div>
+
+      <label>
+        Número de acompañantes (incluyéndote)
+        <input type="number" name="acompanantes" min="1" value="1">
+      </label>
+
+      <label>
+        Restricciones alimentarias / alergias
+        <textarea name="restricciones" rows="3" placeholder="Vegetariano, celíaco, alergias..."></textarea>
+      </label>
+
+      <label>
+        Mensaje (opcional)
+        <textarea name="mensaje" rows="3"></textarea>
+      </label>
+
+      <button type="submit">Enviar confirmación</button>
+      <p id="rsvp-status" class="form-status"></p>
+    </form>
+  </section>
+
+  <section id="galeria" class="section">
+    <h2>Galería de fotos</h2>
+    <p class="section-subtitle">Escanea el QR el día de la fiesta y sube tus fotos. Todas se juntan aquí.</p>
+
+    <div class="upload-buttons">
+      <div class="upload-box">
+        <h3>Sube tus fotos</h3>
+        <p>¿Estuviste en la fiesta? Sube aquí tus fotos.</p>
+        <input type="file" id="party-upload" accept="image/*" multiple>
+        <p id="party-upload-status" class="form-status"></p>
+      </div>
+    </div>
+
+    <div id="gallery-grid" class="gallery-grid"></div>
+    <button id="gallery-load-more" class="load-more" hidden>Cargar más</button>
+  </section>
+
+  <footer class="footer">
+    <p>Hecho con cariño para la despedida</p>
+  </footer>
+
+  <!-- Supabase SDK (build UMD vía CDN, sin build step) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/countdown.js"></script>
+  <script src="js/rsvp.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>
