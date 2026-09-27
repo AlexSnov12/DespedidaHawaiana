@@ -132,6 +132,13 @@
     <p>Hecho con cariño para la despedida</p>
   </footer>
 
+  <div id="lightbox" class="lightbox" hidden>
+    <button id="lightbox-close" class="lightbox-close" aria-label="Cerrar">&times;</button>
+    <button id="lightbox-prev" class="lightbox-arrow lightbox-prev" aria-label="Foto anterior">&#10094;</button>
+    <img id="lightbox-img" src="" alt="Foto ampliada">
+    <button id="lightbox-next" class="lightbox-arrow lightbox-next" aria-label="Foto siguiente">&#10095;</button>
+  </div>
+
   <!-- Supabase SDK (build UMD vía CDN, sin build step) -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 
@@ -139,5 +146,6 @@
   <script src="js/countdown.js"></script>
   <script src="js/rsvp.js"></script>
   <script src="js/gallery.js"></script>
+  <script src="js/lightbox.js"></script>
 </body>
 </html>
