@@ -1,5 +1,5 @@
 // Fecha y hora de la despedida. Cambia esto a la fecha real (formato ISO, hora local).
-const PARTY_DATE = new Date("2027-03-14T18:00:00");
+const PARTY_DATE = new Date("2026-10-10T16:00:00");
 
 document.getElementById("party-date-text").textContent =
   PARTY_DATE.toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
