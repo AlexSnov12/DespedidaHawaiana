@@ -28,6 +28,7 @@ h1, h2, h3, .hero-kicker {
 
 .hero {
   position: relative;
+  z-index: 0;
   overflow: hidden;
   min-height: 100vh;
   display: flex;
@@ -37,6 +38,24 @@ h1, h2, h3, .hero-kicker {
   padding: 48px 16px 110px;
   background: linear-gradient(180deg, #ffd371 0%, #ff9a56 26%, #ff6f61 50%, #c04b8a 74%, #4b2e6b 100%);
   color: #fff8ef;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url('../Resources/foto.jpeg');
+  background-size: cover;
+  background-position: center 30%;
+}
+
+.hero-photo-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(43, 20, 40, 0.35) 0%, rgba(43, 20, 40, 0) 55%),
+    linear-gradient(180deg, rgba(255, 211, 113, 0.8) 0%, rgba(255, 154, 86, 0.78) 26%, rgba(255, 111, 97, 0.8) 50%, rgba(192, 75, 138, 0.85) 74%, rgba(75, 46, 107, 0.94) 100%);
 }
 
 .hero-sun {
@@ -173,6 +192,7 @@ h1, h2, h3, .hero-kicker {
   margin: 0 0 8px;
   font-size: 0.9rem;
   font-weight: 600;
+  text-shadow: 0 2px 10px rgba(43, 20, 40, 0.55);
 }
 
 .hero-names {
@@ -186,6 +206,7 @@ h1, h2, h3, .hero-kicker {
   color: rgba(255, 248, 239, 0.9);
   margin: 0 0 32px;
   font-size: 1.1rem;
+  text-shadow: 0 2px 10px rgba(43, 20, 40, 0.55);
 }
 
 .countdown {
