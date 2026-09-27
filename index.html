@@ -148,6 +148,12 @@
     <p>Hecho con cariño para la despedida</p>
   </footer>
 
+  <button id="music-toggle" class="music-toggle" aria-label="Reproducir música" aria-pressed="false">
+    <svg class="music-toggle-icon icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+    <svg class="music-toggle-icon icon-pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor"/></svg>
+  </button>
+  <audio id="bg-music" src="audio/hawaiian.mp3" loop preload="none"></audio>
+
   <div id="lightbox" class="lightbox" hidden>
     <button id="lightbox-close" class="lightbox-close" aria-label="Cerrar">&times;</button>
     <button id="lightbox-prev" class="lightbox-arrow lightbox-prev" aria-label="Foto anterior">&#10094;</button>
@@ -164,5 +170,6 @@
   <script src="js/rsvp.js"></script>
   <script src="js/gallery.js"></script>
   <script src="js/lightbox.js"></script>
+  <script src="js/music.js"></script>
 </body>
 </html>
