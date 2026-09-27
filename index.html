@@ -4,11 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Despedida de Soltero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- Símbolo SVG reutilizable de la palmera decorativa -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="palm-tree" viewBox="0 0 240 240">
+      <path d="M128 235 C118 190 115 150 120 112" stroke="currentColor" stroke-width="16" stroke-linecap="round" fill="none"/>
+      <path d="M120 112 C95 95 45 95 15 120" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <path d="M120 112 C100 75 65 50 40 25" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <path d="M120 112 C110 65 95 30 80 0" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <path d="M120 112 C130 65 145 30 160 0" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <path d="M120 112 C140 75 175 50 200 25" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <path d="M120 112 C145 95 195 95 225 120" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"/>
+    </symbol>
+  </svg>
+
   <header class="hero">
+    <div class="hero-sun" aria-hidden="true"></div>
+    <svg class="hero-palm hero-palm--left" aria-hidden="true"><use href="#palm-tree"></use></svg>
+    <svg class="hero-palm hero-palm--right" aria-hidden="true"><use href="#palm-tree"></use></svg>
+
     <div class="hero-content">
       <p class="hero-kicker">Despedida de soltero(a)</p>
       <h1 class="hero-names">Nombre &amp; Nombre</h1>
@@ -27,17 +47,23 @@
         <a href="#galeria">Galería</a>
       </nav>
     </div>
+
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path class="wave-fill-bg" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,100 L0,100 Z"/>
+      </svg>
+    </div>
   </header>
 
   <section id="info" class="section">
     <h2>Información</h2>
     <div class="info-grid">
-      <div class="info-card">
+      <div class="info-card info-card--coral">
         <h3>Lugar y hora</h3>
         <p id="party-place">Lugar de la fiesta</p>
         <p id="party-time">Hora</p>
       </div>
-      <div class="info-card">
+      <div class="info-card info-card--teal">
         <h3>Código de vestimenta</h3>
         <p>Temática hawaiana — trae tu camisa o vestido de flores</p>
       </div>
@@ -97,6 +123,11 @@
     <button id="gallery-load-more" class="load-more" hidden>Cargar más</button>
   </section>
 
+  <div class="wave-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path class="wave-fill-teal" d="M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z"/>
+    </svg>
+  </div>
   <footer class="footer">
     <p>Hecho con cariño para la despedida</p>
   </footer>
