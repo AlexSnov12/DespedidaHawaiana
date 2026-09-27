@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Despedida</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-wrap">
+    <div id="admin-login" class="admin-card">
+      <h1>Acceso de administración</h1>
+      <input type="password" id="admin-password" placeholder="Contraseña">
+      <button id="admin-login-btn">Entrar</button>
+      <p id="admin-login-status" class="admin-status"></p>
+    </div>
+
+    <div id="admin-panel" hidden>
+      <h1>Panel de administración</h1>
+
+      <section class="admin-section">
+        <h2>Lista de asistencia</h2>
+        <p id="rsvp-summary" class="admin-summary"></p>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>¿Asiste?</th>
+                <th>Acompañantes</th>
+                <th>Restricciones</th>
+                <th>Mensaje</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="rsvp-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="admin-section">
+        <h2>Fotos subidas</h2>
+        <p id="gallery-summary" class="admin-summary"></p>
+        <div id="admin-gallery" class="admin-gallery"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

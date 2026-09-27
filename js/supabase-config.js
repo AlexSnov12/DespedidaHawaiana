@@ -4,3 +4,6 @@ const SUPABASE_URL = "https://abbilyxiebidevwyaucz.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_bWYraBHipwJ4vgTM09Khsg_N8Mgz3IM";
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+// Contraseña del panel de administración (admin.html). Cambiala si quieres.
+const ADMIN_PASSWORD = "249881";

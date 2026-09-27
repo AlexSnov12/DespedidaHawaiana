@@ -53,17 +53,41 @@ create policy "Subida publica fotos despedida"
   with check (bucket_id = 'fotos-despedida');
 ```
 
-## 3. Configuración ya lista
+## 3. Panel de administración (`admin.html`)
+
+Hay una página aparte, `admin.html`, protegida con la contraseña `249881` (definida en `js/supabase-config.js` como `ADMIN_PASSWORD`), donde puedes:
+- Ver la lista de quién confirmó asistencia (con acompañantes, restricciones y mensaje).
+- Ver todas las fotos subidas y eliminar las que no quieras (subidas por error, repetidas, etc.).
+
+No está enlazada desde el menú del sitio — solo entra quien tenga el link directo (`tu-sitio.netlify.app/admin.html`).
+
+Para que funcione necesitas ejecutar este SQL adicional (**SQL Editor** > "New query"):
+
+```sql
+create policy "Lectura publica rsvps despedida"
+  on rsvps_despedida for select
+  to anon
+  using (true);
+
+create policy "Borrado publico fotos despedida"
+  on storage.objects for delete
+  to anon
+  using (bucket_id = 'fotos-despedida');
+```
+
+**Importante sobre seguridad:** igual que con el código de la galería de novios en `PaginaBoda`, esta contraseña es solo una barrera visual en el navegador — las políticas de arriba dejan que **cualquiera** con la clave pública del sitio (que está en el propio código fuente, visible para cualquiera) pueda leer las respuestas de asistencia o borrar fotos directamente, sin pasar por `admin.html` ni conocer la contraseña. Para esta boda/despedida entre conocidos es un riesgo bajo y razonable, pero si en algún momento quieren protección real (que solo tú puedas hacer estas acciones, sin importar quién tenga el código), avísame y lo cambiamos a autenticación de verdad (Supabase Auth) en vez de este password compartido.
+
+## 4. Configuración ya lista
 
 `js/supabase-config.js` ya tiene el mismo `SUPABASE_URL` y `SUPABASE_PUBLISHABLE_KEY` que `PaginaBoda` (es el mismo proyecto Supabase), así que no hace falta tocarlo salvo que decidan crear un proyecto Supabase distinto más adelante.
 
-## 4. Personalizar el contenido
+## 5. Personalizar el contenido
 
 - `js/countdown.js`: cambia `PARTY_DATE` por la fecha y hora reales.
-- `index.html`: cambia nombres, lugar, hora y fecha límite de confirmación (busca "Nombre & Nombre", "Lugar de la fiesta", "[fecha límite]").
-- `css/style.css`: cambia `--color-accent` y demás variables si quieren una paleta más "hawaiana" (turquesa, coral, amarillo, etc.).
+- `index.html`: cambia lugar y hora (busca "Lugar de la fiesta").
+- `css/style.css`: cambia `--color-accent` y demás variables si quieren otra paleta.
 
-## 5. Probar en local
+## 6. Probar en local
 
 ```
 npx serve . -l <puerto distinto al de PaginaBoda, ej. 5174>
@@ -71,14 +95,14 @@ npx serve . -l <puerto distinto al de PaginaBoda, ej. 5174>
 
 Y abre la URL que te indique.
 
-## 6. Desplegar en Netlify
+## 7. Desplegar en Netlify
 
 1. Sube esta carpeta a un repositorio de GitHub distinto al de la boda.
 2. En https://app.netlify.com > "Add new site" > "Import an existing project", conecta el repo.
 3. Build command: (vacío). Publish directory: `.`
 4. Despliega — te dará una URL tipo `despedida-xxx.netlify.app`, distinta a la de la boda.
 
-## 7. Generar el QR para la fiesta
+## 8. Generar el QR para la fiesta
 
 Una vez tengas la URL final, genera un QR (por ejemplo con https://www.qr-code-generator.com) apuntando a `https://tu-sitio.netlify.app/#galeria`, imprímelo y colócalo donde se vea en la fiesta.
 
