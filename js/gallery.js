@@ -1,5 +1,6 @@
 const PAGE_SIZE = 24;
 const BUCKET = "fotos-despedida";
+const THUMB_TRANSFORM = { width: 400, height: 400, resize: "cover", quality: 70 };
 
 const galleryGrid = document.getElementById("gallery-grid");
 const loadMoreBtn = document.getElementById("gallery-load-more");
@@ -22,10 +23,19 @@ async function loadGalleryPage(append) {
   if (!append) galleryGrid.innerHTML = "";
 
   for (const file of data) {
-    const { data: urlData } = supabaseClient.storage.from(BUCKET).getPublicUrl(file.name);
+    const bucket = supabaseClient.storage.from(BUCKET);
+    const { data: urlData } = bucket.getPublicUrl(file.name);
+    const { data: thumbData } = bucket.getPublicUrl(file.name, { transform: THUMB_TRANSFORM });
     const img = document.createElement("img");
-    img.src = urlData.publicUrl;
+    // La cuadrícula usa miniaturas; el original solo se pide al ampliar o guardar.
+    img.dataset.full = urlData.publicUrl;
+    img.onerror = () => {
+      img.onerror = null;
+      img.src = urlData.publicUrl;
+    };
+    img.src = thumbData.publicUrl;
     img.loading = "lazy";
+    img.decoding = "async";
     img.alt = "Foto de la fiesta";
     galleryGrid.appendChild(img);
   }

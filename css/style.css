@@ -533,6 +533,21 @@ h1, h2, h3, .hero-kicker {
   justify-content: center;
 }
 
+.lightbox-download {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-accent, #fff);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .lightbox-prev { left: 16px; }
 .lightbox-next { right: 16px; }
 
