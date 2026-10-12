@@ -36,6 +36,9 @@
   });
 
   const downloadBtn = document.getElementById("lightbox-download");
+  const isIOS =
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
   async function downloadCurrent() {
     const url = lightboxImg.src;
@@ -47,7 +50,8 @@
       const blob = await (await fetch(url)).blob();
       const name = decodeURIComponent(url.split("/").pop().split("?")[0]) || "foto.jpg";
       const file = new File([blob], name, { type: blob.type || "image/jpeg" });
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      // En iPhone/iPad la descarga va a Archivos; compartir permite guardar en el carrete.
+      if (isIOS && navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({ files: [file] });
       } else {
         const a = document.createElement("a");
