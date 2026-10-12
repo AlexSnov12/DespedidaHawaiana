@@ -36,41 +36,58 @@
   });
 
   const downloadBtn = document.getElementById("lightbox-download");
-  const isIOS =
-    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const shareBtn = document.getElementById("lightbox-share");
 
-  async function downloadCurrent() {
+  // Compartir archivos solo funciona en https y en navegadores que lo soportan.
+  const canShareFiles = (() => {
+    try {
+      const probe = new File([""], "foto.jpg", { type: "image/jpeg" });
+      return !!(navigator.canShare && navigator.canShare({ files: [probe] }));
+    } catch (err) {
+      return false;
+    }
+  })();
+  shareBtn.hidden = !canShareFiles;
+
+  async function withCurrentPhoto(btn, action) {
     const url = lightboxImg.src;
     if (!url) return;
-    const label = downloadBtn.textContent;
-    downloadBtn.disabled = true;
-    downloadBtn.textContent = "Preparando...";
+    const label = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Preparando...";
     try {
       const blob = await (await fetch(url)).blob();
       const name = decodeURIComponent(url.split("/").pop().split("?")[0]) || "foto.jpg";
-      const file = new File([blob], name, { type: blob.type || "image/jpeg" });
-      // En iPhone/iPad la descarga va a Archivos; compartir permite guardar en el carrete.
-      if (isIOS && navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({ files: [file] });
-      } else {
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = name;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-      }
+      await action(blob, name);
     } catch (err) {
       if (err.name !== "AbortError") window.open(url, "_blank");
     } finally {
-      downloadBtn.disabled = false;
-      downloadBtn.textContent = label;
+      btn.disabled = false;
+      btn.textContent = label;
     }
   }
 
+  function downloadCurrent() {
+    return withCurrentPhoto(downloadBtn, (blob, name) => {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    });
+  }
+
+  function shareCurrent() {
+    return withCurrentPhoto(shareBtn, (blob, name) => {
+      const file = new File([blob], name, { type: blob.type || "image/jpeg" });
+      return navigator.share({ files: [file] });
+    });
+  }
+
   downloadBtn.addEventListener("click", downloadCurrent);
+  shareBtn.addEventListener("click", shareCurrent);
 
   closeBtn.addEventListener("click", closeLightbox);
   prevBtn.addEventListener("click", () => showRelative(-1));

@@ -533,12 +533,22 @@ h1, h2, h3, .hero-kicker {
   justify-content: center;
 }
 
-.lightbox-download {
+.lightbox-actions {
   position: absolute;
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+}
+
+.lightbox-action[hidden] {
+  display: none;
+}
+
+.lightbox-action {
   padding: 12px 24px;
+  white-space: nowrap;
   border: none;
   border-radius: 999px;
   background: var(--color-accent, #fff);
